@@ -1,4 +1,4 @@
-package Net.Socket;
+package NetProgram.StudentSocket;
 
 import java.io.Serializable;
 

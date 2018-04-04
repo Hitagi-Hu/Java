@@ -1,4 +1,4 @@
-package Net.Socket;
+package NetProgram.Socket;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
