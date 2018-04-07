@@ -196,8 +196,8 @@ public class TicTacToeClient extends Application implements TicTacToeConstants {
                 line1.endXProperty().bind(this.widthProperty().subtract(10));
                 line1.endYProperty().bind(this.heightProperty().subtract(10));
                 Line line2 = new Line(10, this.getHeight() - 10, this.getWidth() - 10, 10);
-                line2.startXProperty().bind(this.heightProperty().subtract(10));
-                line2.startYProperty().bind(this.widthProperty().subtract(10));
+                line2.startXProperty().bind(this.widthProperty().subtract(10));
+                line2.startYProperty().bind(this.heightProperty().subtract(10));
 
                 //Add lines to the pane
                 this.getChildren().addAll(line1, line2);
