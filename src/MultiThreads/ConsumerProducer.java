@@ -1,4 +1,6 @@
-
+package MultiThreads;
+/**
+ * 创建线程的两种方法：继承Thread类或实现Runnable接口*/
 import java.nio.IntBuffer;
 import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
@@ -16,7 +18,7 @@ public class ConsumerProducer {
         executor.shutdown();
     }
 
-    private static class ProducerTask implements Runnable {
+    private static class ProducerTask extends Thread {
         public void run(){
             try {
                 int i = 1;
