@@ -1,3 +1,5 @@
+package MultiThreads;
+/**使用阻塞队列实现进程间协作*/
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
