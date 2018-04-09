@@ -21,7 +21,7 @@ public class FlashText extends Application {
                         text = "Welcome";
                     else
                         text = "";
-
+                    //update lblText
                     Platform.runLater(() -> lblText.setText(text));
 
                     Thread.sleep(1000);
