@@ -23,7 +23,7 @@ public class TicTacToeClient extends Application implements TicTacToeConstants {
     private char myToken = ' ';
     private char otherToken = ' ';
     //棋盘
-    private Cell[][] cell = new Cell[3][3];
+    private Cell[][] cell = new Cell[3][3];  //pane型矩阵,放置与GridPane中
     private Label lblTitle = new Label();
     private Label lblStatus = new Label();
 
@@ -34,9 +34,10 @@ public class TicTacToeClient extends Application implements TicTacToeConstants {
     private DataOutputStream toServer;
 
     private boolean continueToPlay = true;
+    //Wait for the player to mark a cell
     private boolean waiting = true;
 
-    private String host = "localhost";
+    private String host = "192.168.42.57";  //localhost
 
     @Override
     public void start(Stage primaryStage) {
@@ -55,10 +56,10 @@ public class TicTacToeClient extends Application implements TicTacToeConstants {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        connecToServer();
+        connectToServer();
     }
 
-    private void connecToServer() {
+    private void connectToServer() {
         try {
             Socket socket = new Socket(host, 8000);
             fromServer = new DataInputStream(socket.getInputStream());
@@ -116,8 +117,8 @@ public class TicTacToeClient extends Application implements TicTacToeConstants {
     private void waitForPlayerAction() throws InterruptedException {
         while (waiting) {
             Thread.sleep(100);
-            waiting = true;
         }
+        waiting = true;
     }
 
     private void sendMove() throws IOException {
@@ -206,12 +207,12 @@ public class TicTacToeClient extends Application implements TicTacToeConstants {
                 Ellipse ellipse = new Ellipse(this.getWidth() / 2, this.getHeight() / 2, this.getWidth() / 2 - 10, this.getHeight() / 2 - 10);
                 ellipse.centerXProperty().bind(this.widthProperty().divide(2));
                 ellipse.centerYProperty().bind(this.heightProperty().divide(2));
-                ellipse.radiusXProperty().bind(this.heightProperty().divide(2).subtract(10));
-                ellipse.radiusYProperty().bind(this.widthProperty().divide(2).subtract(10));
+                ellipse.radiusXProperty().bind(this.widthProperty().divide(2).subtract(10));
+                ellipse.radiusYProperty().bind(this.heightProperty().divide(2).subtract(10));
                 ellipse.setStroke(Color.BLACK);
                 ellipse.setFill(Color.WHITE);
 
-                getChildren().addAll(ellipse);
+                getChildren().add(ellipse);
             }
         }
 
@@ -222,7 +223,7 @@ public class TicTacToeClient extends Application implements TicTacToeConstants {
                 rowSelected = row;
                 columnSelected = column;
                 lblStatus.setText("Waiting for the other player to move");
-                        waiting = false;
+                waiting = false;
             }
         }
     }
