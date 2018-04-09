@@ -71,13 +71,13 @@ public class TicTacToeServer extends Application implements TicTacToeConstants {
         private Socket player1;
         private Socket player2;
 
-        private char[][] cell = new char[3][3];
+        private char[][] cell = new char[3][3];  //这里cell只是二维字符矩阵，客户端代码中的cell是(pane型)矩阵
         private DataInputStream fromPlayer1;
         private DataOutputStream toPlayer1;
         private DataInputStream fromPlayer2;
         private DataOutputStream toPlayer2;
 
-        private  boolean continueToPlay = true;
+        //private  boolean continueToPlay = true;
 
         public HandleASession(Socket player1, Socket player2) {
             this.player1 = player1;
@@ -91,10 +91,10 @@ public class TicTacToeServer extends Application implements TicTacToeConstants {
         @Override
         public void run(){
             try {
-                DataInputStream fromPlayer1 = new DataInputStream(player1.getInputStream());
-                DataOutputStream toPlayer1 = new DataOutputStream(player1.getOutputStream());
-                DataInputStream fromPlayer2 = new DataInputStream(player2.getInputStream());
-                DataOutputStream toPlayer2 = new DataOutputStream(player2.getOutputStream());
+                fromPlayer1 = new DataInputStream(player1.getInputStream());
+                toPlayer1 = new DataOutputStream(player1.getOutputStream());
+                fromPlayer2 = new DataInputStream(player2.getInputStream());
+                toPlayer2 = new DataOutputStream(player2.getOutputStream());
 
                 //Write message to remind player1 to start
                 toPlayer1.writeInt(1);
@@ -107,7 +107,7 @@ public class TicTacToeServer extends Application implements TicTacToeConstants {
                     cell[row][column] = 'X';
 
                     //Check game state
-                    if(isWon('X')) {
+                    if (isWon('X')) {
                         toPlayer1.writeInt(PLAYER1_WON);
                         toPlayer2.writeInt(PLAYER1_WON);
                         sendMove(toPlayer2, row, column);
@@ -136,14 +136,14 @@ public class TicTacToeServer extends Application implements TicTacToeConstants {
                         sendMove(toPlayer1, row, column);
                         break;
                     }
-                    /**棋盘位置个数为奇数，不可能在player落子时棋盘为满*/
+                    /**棋盘位置个数为奇数，不可能在player2落子时棋盘为满*/
                    /* else if (isFull()) { //Draw
                         toPlayer1.writeInt(DRAW);
-                        toplayer2.writeInt(DRAW);
-                        sendMove(toplayer1, row, column);
+                        toPlayer2.writeInt(DRAW);
+                        sendMove(toPlayer1, row, column);
                     }*/
                     else {
-                        toPlayer2.writeInt(CONTINUE);
+                        toPlayer1.writeInt(CONTINUE);
                         sendMove(toPlayer1, row, column);
                     }
                 }
@@ -168,7 +168,11 @@ public class TicTacToeServer extends Application implements TicTacToeConstants {
                 if (cell[0][j] == c && cell[1][j] == c && cell[2][j] == c)
                     return true;
             //check diagonal(对角线)
-            return (cell[0][0] == c && cell[1][1] == c && cell[2][2] == c) || (cell[0][2] == c && cell[1][1] == c && cell[2][0] == c);
+            if (cell[0][0] == c && cell[1][1] == c && cell[2][2] == c)
+                return true;
+            if (cell[0][2] == c && cell[1][1] == c && cell[2][0] == c)
+                return true;
+            return false;
         }
 
         private boolean isFull() {
