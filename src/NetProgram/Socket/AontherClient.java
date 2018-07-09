@@ -1,5 +1,5 @@
 package NetProgram.Socket;
-/*replace BorderPane with FlowPane*/
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 import java.io.DataInputStream;
@@ -16,20 +17,23 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Client extends Application {
+public class AontherClient extends Application {
     DataOutputStream toServer = null;
     DataInputStream fromServer = null;
 
     @Override
     public void start(Stage primaryStage){
-        BorderPane paneForTextField = new BorderPane();
+        FlowPane paneForTextField = new FlowPane();
         paneForTextField.setPadding(new Insets(5, 5, 5, 5));
+        paneForTextField.setHgap(5);
+        paneForTextField.setVgap(5);
         paneForTextField.setStyle("-fx-border-color: green");
-        paneForTextField.setLeft(new Label("Enter a radius: "));
+
 
         TextField tf = new TextField();
         tf.setAlignment(Pos.BOTTOM_RIGHT);
-        paneForTextField.setCenter(tf);
+        paneForTextField.getChildren().addAll(new Label("Enter a radius: "), tf);
+
 
         BorderPane mainPane = new BorderPane();
         //Text area to display contents
@@ -38,9 +42,19 @@ public class Client extends Application {
         mainPane.setTop(paneForTextField);
 
         Scene scene = new Scene(mainPane, 450, 200);
-        primaryStage.setTitle("Client");
+        primaryStage.setTitle("AontherClient");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        try {
+            Socket socket = new Socket("localhost", 8000);
+            System.out.println("local port: " + socket.getLocalPort()); //在控制台打印端口信息
+            fromServer = new DataInputStream(socket.getInputStream());
+            toServer = new DataOutputStream(socket.getOutputStream());
+        }
+        catch (IOException ex){
+            ta.appendText(ex.toString() + '\n');
+        }
 
         tf.setOnAction(e -> {
             try {
@@ -58,15 +72,8 @@ public class Client extends Application {
                 System.err.println(ex);
             }
         });
-        try {
-            Socket socket = new Socket("localhost", 8000);
-            System.out.println("local port: " + socket.getLocalPort());
-            fromServer = new DataInputStream(socket.getInputStream());
-            toServer = new DataOutputStream(socket.getOutputStream());
-        }
-        catch (IOException ex){
-            ta.appendText(ex.toString() + '\n');
-        }
+
 
     }
 }
+

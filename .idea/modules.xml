@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/IntelliJ IDEA WorkSpace.iml" filepath="$PROJECT_DIR$/IntelliJ IDEA WorkSpace.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/IntelliJ IDEA WorkSpace1.iml" filepath="$PROJECT_DIR$/src/IntelliJ IDEA WorkSpace1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/IdeaProjects.iml" filepath="$PROJECT_DIR$/src/IdeaProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IdeaProjects1.iml" filepath="$PROJECT_DIR$/IdeaProjects1.iml" />
     </modules>
   </component>
 </project>

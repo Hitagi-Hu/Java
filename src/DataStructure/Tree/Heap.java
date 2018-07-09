@@ -59,7 +59,7 @@ public class Heap<E extends Comparable<E> >{
             int leftChildIndex = 2 * currentIndex + 1;
             int rightChildIndex = 2 * currentIndex + 2;
 
-            //Find the maximum between two children
+            //List the maximum between two children
             if(leftChildIndex >= list.size()) break; //The tree is a heap now，当前节点的左子节点下标越界，说明已遍历到深度最大层
             int maxIndex = leftChildIndex;
             if(rightChildIndex < list.size()){

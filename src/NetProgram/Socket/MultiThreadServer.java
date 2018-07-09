@@ -41,13 +41,13 @@ public class MultiThreadServer extends Application {
                     Platform.runLater(() -> {
                         ta.appendText("Starting thread for client " + clientNo + " at" + new Date() + '\n');
 
-                        //Find the client's host name and IP address
+                        //List the client's host name and IP address
                         InetAddress inetAddress = socket.getInetAddress();
                         ta.appendText("Client " + clientNo + "'s host name is " + inetAddress.getHostName() + '\n');
                         ta.appendText("Client " + clientNo + "'s IP address is " + inetAddress.getHostAddress() + '\n');
                     });
 
-                    //Create a new thread for a new connection
+                    //Create a new thread for a new connection to calculate area of a circle and print to client
                     new Thread(new HandleAClient(socket)).start();
                 }
             }
