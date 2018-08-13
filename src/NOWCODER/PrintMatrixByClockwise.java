@@ -1,14 +1,15 @@
 package NOWCODER;
 
 import java.util.ArrayList;
+
 public class PrintMatrixByClockwise {
-    public ArrayList<Integer> printMatrix(int [][] matrix) {
+    public ArrayList<Integer> printMatrix(int[][] matrix) {
         int row = matrix.length;
         int col = matrix[0].length;
         int x = 0, y = 0;
-        int i,j;
+        int i, j;
         ArrayList<Integer> numbers = new ArrayList<>();
-        while (x < row && y < col){ //每一圈的操作,一次循环过后减少了两行两列
+        while (x < row && y < col) { //每一圈的操作,一次循环过后减少了两行两列
             for (j = y; j < col; j++)
                 numbers.add(matrix[x][j]);
             for (i = x + 1; i < row; i++)

@@ -24,5 +24,6 @@ public class GreetingClient {
         catch (Exception e){
             e.printStackTrace();
         }
+
     }
 }

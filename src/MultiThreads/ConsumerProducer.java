@@ -25,7 +25,7 @@ public class ConsumerProducer {
                 while (true){
                     System.out.println("Producer writes " + i);
                     buffer.write(i++);
-                    Thread.sleep((int)(Math.random() * 10000));
+                    Thread.sleep((int)(Math.random() * 200));
                 }
             }
             catch (InterruptedException ex){
@@ -38,7 +38,7 @@ public class ConsumerProducer {
             try {
                 while (true){
                     System.out.println("\t\t\tConsumer reads " + buffer.read());
-                    Thread.sleep((int)(Math.random() * 10000));
+                    Thread.sleep((int)(Math.random() * 200));
                 }
             }
             catch (InterruptedException ex){

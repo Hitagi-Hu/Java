@@ -165,7 +165,7 @@ public class SortLargeFile {
             ex.printStackTrace();
         }
     }
-    /*Main method*/
+    /*numbersOfChar method*/
     public static void main(String[] args)throws Exception{
         sort("largedata.dat","sortedfile.dat");
         //Display the first 100 numbers in the sorted file

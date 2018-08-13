@@ -2,7 +2,7 @@ package sort;
 
 public class InsertionSort {
 
-    public static <E extends Comparable<E> > void insertionSort(E[] list, int left, int right){
+    public static <E extends Comparable> void insertionSort(E[] list, int left, int right){
         for(int i = left + 1; i <= right; i++){   //从要排序的第二个元素开始插入
             E currentElement = list[i];   //待插入元素
             int j;
@@ -13,7 +13,7 @@ public class InsertionSort {
         }
     }
     /**Another insertionSort method*/
-    public static <E extends Comparable<E> > void insertionSort(E[] list){
+    public static <E extends Comparable> void insertionSort(E[] list){
         for(int i = 1; i < list.length; i++){
             E currentElement = list[i];
             int j;

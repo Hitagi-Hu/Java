@@ -1,4 +1,4 @@
-package sort;
+package Algorithm.sort;
 /*
 * package sort;
 /*
@@ -8,14 +8,19 @@ package sort;
 * 3) 增加泛型匹配
 */
 
+
+
+
+import java.util.stream.Stream;
+
 import static sort.InsertionSort.insertionSort;
 
 /*
     * CUTOFF = 10,10个数以上使用quickSort，否则使用insertionSort
     */
-public class  QuickSort_modified<E extends Comparable<E> >{
+public class  QuickSort_modified<E extends Comparable>{
     private final static int CUTOFF = 10;
-    private static <E extends Comparable<E> > void quicksort(E[] list, int left, int right){
+    private static <E extends Comparable<E> > void quickSort(E[] list, int left, int right){
         if(left + CUTOFF <= right ){
             E pivot = median3(list, left, right);
             int i = left, j = right - 1;  //or j = right - 2??
@@ -30,9 +35,8 @@ public class  QuickSort_modified<E extends Comparable<E> >{
                     break;
             }
             swap(list, i, right - 1);
-
-            quicksort(list, left, i - 1);  //Sort small elements
-            quicksort(list, i + 1, right);          //Sort large elements
+            quickSort(list, left, i - 1);  //Sort small elements
+            quickSort(list, i + 1, right);          //Sort large elements
         }
         else //Do an insertion sort on the subArray
             insertionSort(list, left, right);
@@ -63,16 +67,17 @@ public class  QuickSort_modified<E extends Comparable<E> >{
         list[index2] = tmp;
      }
 
-    public static <E extends Comparable<E> > void quicksort(E[] list){
-        quicksort(list, 0, list.length - 1);
+    public static <E extends Comparable<E> > void quickSort(E[] list){
+        quickSort(list, 0, list.length - 1);
     }
 
     /*Test method*/
     public static void main(String[] args){
         Integer[] list = {3, 5, 8, 2, 1, 3, 10, 8};
-        quicksort(list);
+        quickSort(list);
         for (int aList : list) {
             System.out.print(aList + " ");
         }
     }
 }
+

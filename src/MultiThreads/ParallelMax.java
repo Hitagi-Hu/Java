@@ -10,7 +10,7 @@ public class ParallelMax {
         for (int i = 0; i < list.length; i++)
             list[i] = i;
         long startTime = System.currentTimeMillis();
-        System.out.println("\nThe maximal number is " + max(list));
+        System.out.println("The maximal number is " + max(list));
         long endTime = System.currentTimeMillis();
         System.out.println("The number of processors is " + Runtime.getRuntime().availableProcessors() + "\nTime is " + (endTime - startTime) + " milliseconds");
     }

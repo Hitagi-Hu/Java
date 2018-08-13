@@ -22,7 +22,7 @@ public class MergeSort {
         int tempPos = leftPos;
         int numElements = rightEnd - leftPos + 1;
 
-        //Main loop
+        //numbersOfChar loop
         while(leftPos <= leftEnd && rightPos <= rightEnd){
             if(list[leftPos].compareTo(list[rightPos]) <= 0)
                 temp[tempPos++] = list[leftPos++];
